@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prodapt.ctlacademy.model.ElNomination;
+import com.prodapt.ctlacademy.model.ElUser;
 import com.prodapt.ctlacademy.repository.ElNomiRepository;
 
 import com.prodapt.ctlacademy.service.ElNomiService;
@@ -61,6 +62,19 @@ import com.prodapt.ctlacademy.service.ElNomiService;
 			return this.elNomiRepository.findAll();
 
 		}
+		
+		@PostMapping("validateUsersForNomination")
+		public Boolean validateUser(@RequestBody ElNomination r) {
+			ElNomination user=elNomiRepository.findByElNomEmpIdAndElNomCourseId(r.getElNomEmpId(),r.getElNomCourseId());
+			boolean statusmsg = false;
+			if(user!=null) {
+				statusmsg=true;
+				return statusmsg;
+			}else {
+				return statusmsg;
+			}
+		}
+
 		
 		@PostMapping("save")
 		public ElNomination save(@RequestBody ElNomination elnom) {

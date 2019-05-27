@@ -33,11 +33,11 @@ public class SelfNominateMailController {
                 @PostMapping("/sendMail")
     public String sendMailStartMethod(@RequestBody ElNomination elNomination)  throws MessagingException{
                 SimpleMailMessage message =new SimpleMailMessage();
-
+                
+                message.setFrom("vaishnavi.s@prodapt.com");
                 message.setTo(elNomination.getElNomEmpMail(),"vaishnavi.s@prodapt.com");
                 message.setSubject("Approval Request");
-                message.setFrom("vaishnavi.s@prodapt.com");
-                message.setCc(elNomination.getElRmEmail());
+//                message.setCc(elNomination.getElRmEmail());
                 message.setText("Hi Admin,\r\n "+elNomination.getElNomEmpName()+" has requested your approval to take "+elNomination.getElNomCourse()+" course");   
                 sender.send(message);     
                 return "Mail Sent Success!";

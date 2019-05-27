@@ -88,7 +88,7 @@ public class ElCourseContentController {
 	
 	@RequestMapping(value="/uploads",method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException{
-		File convertFile= new File("D:\\images\\uploads\\"+file.getOriginalFilename());
+		File convertFile= new File("/home/ubuntu/Desktop/images/uploads/"+file.getOriginalFilename());
 		  System.out.println(convertFile);
 		convertFile.createNewFile();
 		FileOutputStream fout=new FileOutputStream(convertFile);
@@ -187,6 +187,10 @@ public class ElCourseContentController {
 	                sender.send(message);     
 	                return "Mail Sent Success!";
 	}
+	 
+	 
+	 
+
 
 
 }

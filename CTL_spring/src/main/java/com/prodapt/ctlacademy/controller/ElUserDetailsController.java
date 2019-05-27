@@ -183,5 +183,30 @@ public class ElUserDetailsController {
     		} 
     	 
 
+    	
+    	
+//   	 for fetchiing the status
+    	@RequestMapping("status")
+    	public String ElStatus(@RequestParam int code,@RequestParam int id) {
+   			 
+   			 Query query1 = entityManager.createNativeQuery( "select el_nom_status from ctlacademy.el_nomi where el_emp_id="+code+" and el_nom_course_id="+id);
+			String result= (String) query1.getSingleResult();
+			System.out.println(result);
+			return result;
+			
+    	}
+    	
+//    	For Fetching the index
+    	@RequestMapping("index")
+	 	public List Elindex(@RequestParam int code,@RequestParam int id) {
+  			 
+	 		 Query query2 = entityManager.createNativeQuery( "select el_page_index from ctlacademy.el_user_details where el_empid="+code+" and el_ucourse_id="+id,ElUserIndex.class);
+	  	    
+	 		List index =query2.getResultList();
+			System.out.println(index);
+			return index;
+			
+			
+   	}
 
 }
